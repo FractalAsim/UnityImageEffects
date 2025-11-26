@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BullsEyeOnMouse
-  m_Shader: {fileID: 4800000, guid: b8baf6b9884eeb14983d6c2fb85216e0, type: 3}
+  m_Name: BullsEyeOnMouse 1
+  m_Shader: {fileID: 4800000, guid: e98ad33c20094a541bfc8a2dd959b574, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -61,7 +61,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _3D: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -76,12 +75,11 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Time: 0
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.046757333, g: 0.0184905, b: 0.83823526, a: 1}
+    - _Color: {r: 0.1937818, g: 0.28930807, b: 0.28930807, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - mouse: {r: 0.97085786, g: 0.014881782, b: 0, a: 0}
+    - mouse: {r: 0.5, g: 0.5, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
