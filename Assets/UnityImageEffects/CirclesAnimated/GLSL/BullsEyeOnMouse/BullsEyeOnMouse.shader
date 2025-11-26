@@ -2,7 +2,6 @@
 {
 	Properties
 	{
-		mouse ("Mouse", Vector) = (0.5,0.5,0,0)
 	}
 	SubShader
 	{	
@@ -14,7 +13,7 @@
 			precision mediump float;
 			#endif
 
-			uniform vec2 mouse;
+			uniform vec2 _Mouse;
 			uniform vec4 _Time;
 
 			#ifdef VERTEX // Begin vertex program/shader
@@ -36,7 +35,7 @@
 
 			void main()
 			{
-				float color = sin(distance(texcoord.xy, mouse.xy ) * 100 - _Time.y);
+				float color = sin(distance(texcoord.xy, _Mouse.xy) * 100 - _Time.y);
 
 				gl_FragColor = vec4(color, color, color, 1.0);
 			}
