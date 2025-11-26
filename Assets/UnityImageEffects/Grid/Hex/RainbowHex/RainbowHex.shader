@@ -2,6 +2,7 @@ Shader "Hex/RainbowHex"
 {
     Properties
     {
+        _Scale("Scale",Range(1, 1000)) = 1
     }
     SubShader
     {
@@ -31,7 +32,7 @@ Shader "Hex/RainbowHex"
             };
 
             float4 _Color;
-            float2 _Mouse;
+            float _Scale;
 
             float3 hash31(float2 uv)
 			{
@@ -68,10 +69,7 @@ Shader "Hex/RainbowHex"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float2 p = i.uv/_ScreenParams.xy * 1000;
-				p.x *= _ScreenParams.x/_ScreenParams.y;
-				p = hexify(p,20.0);
-
+				float2 p = hexify(i.uv,_Scale);
                 float4 color = float4(hash31(p),1);
                 
                 return color;
