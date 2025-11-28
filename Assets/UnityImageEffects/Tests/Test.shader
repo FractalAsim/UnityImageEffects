@@ -31,6 +31,7 @@ Shader "Tests/UVTest"
                 float2 uv : TEXCOORD0;
             };
 
+            float2 _Mouse;
             float2 _Offset;
             float _Scale;
             float _Center;
@@ -55,6 +56,9 @@ Shader "Tests/UVTest"
 
                 // Apply Offset
                 i.uv -= _Offset;
+
+                // Apply Mouse Move
+                i.uv -= _Mouse - float2(0.5,0.5) * _Center;
 
                 float color = length(i.uv) * 2;
 
