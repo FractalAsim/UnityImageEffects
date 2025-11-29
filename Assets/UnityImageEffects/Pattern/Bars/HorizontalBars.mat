@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: HorizontalBars
-  m_Shader: {fileID: 4800000, guid: bc3d9e1deda61374685ff188f6cf5799, type: 3}
+  m_Shader: {fileID: 4800000, guid: 1e29a98a11dd0e941a67e7a4f73ad854, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []

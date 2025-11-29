@@ -46,7 +46,7 @@ Shader "Pattern/HorizontalBars"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                i.uv.x += _Offset;
+                i.uv.x -= _Offset + _Time.x;
                 float bars = step(frac(i.uv.x * _BarNum), 0.5);
 
                 return float4(bars, bars, bars, 1);
