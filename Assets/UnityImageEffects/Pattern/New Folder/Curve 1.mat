@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Curve 1
-  m_Shader: {fileID: 4800000, guid: f32692a53399b1c41a8febedda1563e3, type: 3}
+  m_Shader: {fileID: 4800000, guid: 1d49e7ab55061f84ebdd7221a19a795e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
