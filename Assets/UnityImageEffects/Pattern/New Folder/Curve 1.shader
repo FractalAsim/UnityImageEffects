@@ -2,8 +2,8 @@ Shader "Pattern/Curve"
 {
     Properties
     {
-        _Scale("Scale",Range(1, 10)) = 1
-        _Freq("Freq",Range(1, 100)) = 1
+        _UVScale("UVScale",Range(1, 10)) = 1
+        _Offset("Offset",Vector) = (0,0,0,0)
         _Radius("Radius",Range(1, 10)) = 5
         _Rotation("Rotation",Range(0, 4)) = 1
     }
@@ -19,7 +19,6 @@ Shader "Pattern/Curve"
             #pragma fragment frag // Use "frag" function for Fragment Shader
             
             #include "UnityCG.cginc" 
-            #include "Assets/UnityImageEffects/cginc/Hash.cginc"
 
             // Input to Vertex Shader
             struct appdata
@@ -35,11 +34,8 @@ Shader "Pattern/Curve"
                 float2 uv : TEXCOORD0;
             };
 
-            float2 _Mouse;
-            float _Scale;
-            float _Freq;
-            float _Radius;
-            float _Rotation;
+            float _UVScale;
+            float2 _Offset;
 
             v2f vert (appdata v)
             {
@@ -51,24 +47,47 @@ Shader "Pattern/Curve"
                 return o;
             }
 
+            float hex(float2 p) 
+			{
+				p.x *= 0.57735 * 2.0;
+				p.y += fmod(floor(p.x), 2.0) * 0.5;
+				p = abs((fmod(p, 1.0) - 0.5));
+				return abs(max(p.x * 1.5 + p.y, p.y * 2.0) - 1.0);
+			}
+
+            float pattern(float2 p)
+			{
+				p.x *= 0.866; // = sqrt(3)/2
+				p.x -= p.y * 0.5;
+
+				p = fmod(p,1.0);
+
+				return p.x + p.y < 1.0 ? 0.0 : 1.0;
+			}
+
             fixed4 frag (v2f i) : SV_Target
             {
-				float2 pos = (i.uv.xy * 2 - float2(1,1)) * 80 * _Scale;
+                // Scale
+                //i.uv *= _UVScale;
 
-                float mx = mod(gl_FragCoord.x, 10.0);
-				if(mx < 5.0) 
-				{
-					color = 0.0;
-				} 
-                else 
-				{
-					color = 1.0;	
-				}
+                // Move
+                i.uv -= _Offset.xy;
 
-                return vec4( vec3( color, color, color), 1.0 );;
+				float2 pos = i.uv.xy * 500;
+
+				float p = pos/20.0; 
+
+                float r = (1.0 - 0.7) * 0.5;
+
+                float4 color = pattern(pos * .0173);
+                float4 color2;
+
+                color2.rg = frac(i.uv);
+
+                return color;
             }
 
-            ENDCG
+            ENDCG   
         }
     }
 }

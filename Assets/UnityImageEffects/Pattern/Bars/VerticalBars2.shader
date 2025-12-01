@@ -1,4 +1,6 @@
-Shader "Pattern/VerticalBars"
+// fmod Version
+
+Shader "Pattern/VerticalBars2"
 {
     Properties
     {
@@ -49,7 +51,8 @@ Shader "Pattern/VerticalBars"
                 _AnimateSpeed *= _Mouse.y;
                 i.uv.y -= frac(_Time.x * _AnimateSpeed);
 
-                float bars = step(frac(i.uv.y * _BarNum), 0.5);
+                i.uv.y -= - 1;
+                float bars = step(fmod(i.uv.y * _BarNum,1), 0.5);
 
                 return float4(bars, bars, bars, 1);
             }

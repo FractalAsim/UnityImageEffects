@@ -62,6 +62,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Angle: 1
+    - _AnimateSpeed: 5
     - _BarNum: 5
     - _BumpScale: 1
     - _Cutoff: 0.5

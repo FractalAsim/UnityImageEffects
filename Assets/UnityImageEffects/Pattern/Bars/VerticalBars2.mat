@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: VerticalBars
-  m_Shader: {fileID: 4800000, guid: 8f86df0e455585449830a8acd306858c, type: 3}
+  m_Name: VerticalBars2
+  m_Shader: {fileID: 4800000, guid: 56d23f8fd370f1a4daa32f2cab20a249, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []

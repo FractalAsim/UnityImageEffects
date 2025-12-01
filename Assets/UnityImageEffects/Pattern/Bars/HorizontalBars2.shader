@@ -1,4 +1,6 @@
-Shader "Pattern/VerticalBars"
+// fmod Version
+
+Shader "Pattern/HorizontalBars2"
 {
     Properties
     {
@@ -46,10 +48,11 @@ Shader "Pattern/VerticalBars"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                _AnimateSpeed *= _Mouse.y;
-                i.uv.y -= frac(_Time.x * _AnimateSpeed);
+                _AnimateSpeed *= _Mouse.x;
+                i.uv.x -= frac(_Time.x * _AnimateSpeed);
 
-                float bars = step(frac(i.uv.y * _BarNum), 0.5);
+                i.uv.x -= - 1;
+                float bars = step(fmod(i.uv.x * _BarNum,1), 0.5);
 
                 return float4(bars, bars, bars, 1);
             }

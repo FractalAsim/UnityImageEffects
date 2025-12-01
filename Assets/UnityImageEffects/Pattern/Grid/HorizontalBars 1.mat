@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: VerticalBars
-  m_Shader: {fileID: 4800000, guid: 8f86df0e455585449830a8acd306858c, type: 3}
+  m_Name: HorizontalBars 1
+  m_Shader: {fileID: 4800000, guid: 17409456caa1d874d896b5a96bdd4e84, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -62,13 +62,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _Angle: 1
-    - _AnimateSpeed: 5
-    - _BarNum: 5
+    - _BarNum: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Freq: 4.2
+    - _Freq: 4.6
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -77,18 +76,20 @@ Material:
     - _OcclusionStrength: 1
     - _Offset: 0
     - _Parallax: 0.02
-    - _Radius: 10
-    - _Rotation: 0
+    - _Radius: 4.36
+    - _Rotation: 2.78
     - _Scale: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _UVScale: 3.02
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Mouse: {r: 0, g: 0, b: 0, a: 0}
+    - _Offset: {r: 1, g: 1, b: 1, a: 1}
     - mouse: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

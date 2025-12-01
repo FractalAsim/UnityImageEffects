@@ -1,4 +1,4 @@
-﻿Shader "GLSL/ Bars" 
+﻿Shader "Grid/ Template" 
 {
 	Properties
 	{
@@ -13,9 +13,11 @@
 			precision mediump float;
 			#endif
 
-			uniform vec2 _Mouse;
 			uniform vec2 _ScreenParams; 
+			uniform vec4 _Time; // (t/20, t, t*2, t*3)
+
 			#define resolution _ScreenParams
+			#define time _Time.y
 
 			#ifdef VERTEX // Begin vertex program/shader
 
@@ -28,24 +30,18 @@
 
 			#ifdef FRAGMENT // Begin fragment program/shader
 
-			void main( void ) 
-			{
-				vec2 position = ( gl_FragCoord.xy / resolution.xy ) + _Mouse / 4.0;
-					
-					float color = 0.0;
-					float mx = mod(gl_FragCoord.x, 10.0);
-					
-					if(mx < 5.0) 
-					{
-						color = 0.0;
-					} else 
-					{
-						color = 1.0;	
-					}
-					
-					gl_FragColor = vec4( vec3( color, color, color), 1.0 );
-				
+			float map(float s0, float s1, float d0, float d1, float x) {
+				return mix(d0, d1, (x-s0)/(s1-s0));
 			}
+
+			void main( void ) {
+
+				//gl_FragColor = vec4(mix(0.5, 0.3, smoothstep(0.1, 0.9, pos.y))*vec3(0.4*step(0.5, fract(gl_FragCoord.x / 100.)), 0.5, 0.5), 1.);
+				float b = step(25., mod(gl_FragCoord.x, 50.)) * step(25., mod(gl_FragCoord.y, 50.));
+				vec3 c = (1.-b)*vec3(0.5, 0.5, 0.5);
+				gl_FragColor = vec4(0.5*c, 1.);
+			}
+
 			#endif // Ends fragment program/shader
 
 			ENDGLSL // End GLSL

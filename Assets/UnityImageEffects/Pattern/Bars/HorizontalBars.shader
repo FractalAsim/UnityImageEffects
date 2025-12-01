@@ -2,8 +2,8 @@ Shader "Pattern/HorizontalBars"
 {
     Properties
     {
+        _AnimateSpeed("_AnimateSpeed",Range(1, 10)) = 1
         _BarNum("BarNum",Range(1, 100)) = 1
-        _Offset("Offset",float) = 1
     }
     SubShader
     {
@@ -31,8 +31,9 @@ Shader "Pattern/HorizontalBars"
             };
 
             float2 _Mouse;
+            float _AnimateSpeed;
+
             float _BarNum;
-            float _Offset;
 
             v2f vert (appdata v)
             {
@@ -46,7 +47,9 @@ Shader "Pattern/HorizontalBars"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                i.uv.x -= _Offset + _Time.x;
+                _AnimateSpeed *= _Mouse.x;
+                i.uv.x -= frac(_Time.x * _AnimateSpeed);
+
                 float bars = step(frac(i.uv.x * _BarNum), 0.5);
 
                 return float4(bars, bars, bars, 1);
