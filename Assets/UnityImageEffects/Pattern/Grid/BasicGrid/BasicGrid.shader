@@ -1,8 +1,9 @@
-Shader "Grid/NewUnlitShader"
+Shader "Grid/BasicGrid"
 {
     Properties
     {
         _Scale("Scale",Range(1, 40)) = 1
+        [Toggle] _Invert("Invert",float) = 0
     }
     SubShader
     {
@@ -14,8 +15,6 @@ Shader "Grid/NewUnlitShader"
 
             #pragma vertex vert // Use "vert" function for Vertex Shader
             #pragma fragment frag // Use "frag" function for Fragment Shader
-
-            //#include "UnityCG.cginc"
 
             // Input to Vertex Shader
             struct appdata
@@ -41,28 +40,27 @@ Shader "Grid/NewUnlitShader"
                 return o;
             }
 
+            float2 _Mouse;
             float _Scale;
-
-            float map(float s0, float s1, float d0, float d1, float x) {
-				return lerp(d0, d1, (x-s0)/(s1-s0));
-			}
+            float _Invert;
 
             fixed4 frag (v2f i) : SV_Target
             {
+                i.uv -= _Mouse;
+
                 float2 pos = i.uv.xy * _Scale;
 
-                float b = step(1, fmod(pos.x, 2));
+                float b;
 
-                b = step(fmod(pos.x, 1),0.5);
+                // Vertical
+                b = step(frac(pos.x), 0.5);
 
-                //b = step(frac(pos.x), 0.5);
+                // Horizontal
+                b += step(frac(pos.y), 0.5);
 
-                //b *= step(1, fmod(pos.y, 2));
+                b = b - _Invert;
 
-				float3 c = b;
-
-                float4 color = float4(c,1);
-                
+                float4 color = float4(b,b,b,1);
                 return color;
             }
 
