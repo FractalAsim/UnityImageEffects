@@ -1,11 +1,9 @@
-Shader "Pattern/Curve"
+Shader "Pattern/Triangle"
 {
     Properties
     {
-        _UVScale("UVScale",Range(1, 10)) = 1
-        _Offset("Offset",Vector) = (0,0,0,0)
-        _Radius("Radius",Range(1, 10)) = 5
-        _Rotation("Rotation",Range(0, 4)) = 1
+        _Spacing("Spacing",Range(1, 10)) = 1
+        _Scale("Scale",Range(1, 100)) = 1
     }
     SubShader
     {
@@ -34,8 +32,8 @@ Shader "Pattern/Curve"
                 float2 uv : TEXCOORD0;
             };
 
-            float _UVScale;
-            float2 _Offset;
+            float _Scale;
+            float _Spacing;
 
             v2f vert (appdata v)
             {
@@ -47,42 +45,23 @@ Shader "Pattern/Curve"
                 return o;
             }
 
-            float hex(float2 p) 
-			{
-				p.x *= 0.57735 * 2.0;
-				p.y += fmod(floor(p.x), 2.0) * 0.5;
-				p = abs((fmod(p, 1.0) - 0.5));
-				return abs(max(p.x * 1.5 + p.y, p.y * 2.0) - 1.0);
-			}
-
-            float pattern(float2 p)
+            float pattern(float2 p, float spacing)
 			{
 				p.x *= 0.866; // = sqrt(3)/2
-				p.x -= p.y * 0.5;
+				p.x -= p.y * 0.5; // Shear
 
-				p = fmod(p,1.0);
+				p = fmod(p,spacing);
 
 				return p.x + p.y < 1.0 ? 0.0 : 1.0;
 			}
 
             fixed4 frag (v2f i) : SV_Target
             {
-                // Scale
-                //i.uv *= _UVScale;
-
                 // Move
-                i.uv -= _Offset.xy;
+                i.uv.x += 1;
 
-				float2 pos = i.uv.xy * 500;
-
-				float p = pos/20.0; 
-
-                float r = (1.0 - 0.7) * 0.5;
-
-                float4 color = pattern(pos * .0173);
-                float4 color2;
-
-                color2.rg = frac(i.uv);
+				float2 pos = i.uv.xy * _Scale;
+                float4 color = pattern(pos, _Spacing);
 
                 return color;
             }
